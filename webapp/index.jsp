@@ -6,5 +6,10 @@
         <link rel="stylesheet" href="style.css">
         <title>Aution</title>
     </head>
-    <body></body>
+    <body>
+        <h1>Chào anh em, có giá thì mời vào đấu!</h1>
+        <div id="display-items">
+
+        </div>
+    </body>
 </html>
