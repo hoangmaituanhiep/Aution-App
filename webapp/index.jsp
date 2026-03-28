@@ -9,8 +9,8 @@
     <body>
         <h1>Chào anh em, có giá thì mời vào đấu!</h1>
         <div id="display-items">
-            <div id="testSite">
-            </div>
+            <h3> chào ae</h3>
+            <h1>Chưa biết phải code gì ae</h1>
         </div>
     </body>
 </html>
