@@ -10,11 +10,21 @@ public class User {
 
     public void register(String userName, String password) {
         if (userName.equals(null) || password.equals(null)){
-            System.out.println("Invalid information");
+            System.out.println("Invalid information!");
         }
         else {
             this.userName = userName;
             this.password = password;
+        }
+    }
+
+    public void signIn(String userName, String password) {
+        if (userName.equals(null) || password.equals(null)) {
+            System.out.println("Please register first!");
+        }
+        if (this.userName.equals(userName) &&
+        this.password.equals(password)) {
+            
         }
     }
 }
@@ -26,5 +36,5 @@ class Admin extends User {
 
 }
 class Seller extends User {
-    
+
 }
