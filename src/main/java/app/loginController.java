@@ -4,10 +4,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.event.ActionEvent;
 
-class LoginService {
-
-}
-
 public class loginController {
     @FXML private TextField getUserName;
     @FXML private PasswordField getPassword;
