@@ -1,4 +1,4 @@
-package app;
+package app.functions;
 
 abstract class User extends Entity {
     protected String userName;
