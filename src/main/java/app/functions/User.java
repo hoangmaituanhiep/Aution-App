@@ -20,15 +20,15 @@ class Bidder extends User {
             new_bidder.setUserName(userName);
             new_bidder.setPassword(passWord);
         } else if ( ) {// Nếu tên tài khoản đã sử dụng ở trong database
-            System.out.println("Please use other UserName.")
+            System.out.println("Please use other UserName.");
         }
     }
     public void signIn(String userName, String passWord) {
         if () { // có tài khoản trong database chưa
-            System.out.println("Account does not exist. Please register first.")
+            System.out.println("Account does not exist. Please register first.");
         } else {
             if (new_bidder.getPassword() != passWord) {
-                System.out.println("Incorrect password.")
+                System.out.println("Incorrect password.");
             } else () {} // tham gia vào server
         }
     }
@@ -41,21 +41,41 @@ class Admin extends User {
             admin.setUserName(userName);
             admin.setPassword(passWord);
         } else if ( ) {// Nếu tên tài khoản đã sử dụng ở trong database
-            System.out.println("Please use other UserName.")
+            System.out.println("Please use other UserName.");
         }
     }
     public void signIn(String userName, String passWord) {
         if () { // có tài khoản trong database chưa
-            System.out.println("Account does not exist. Please register first.")
+            System.out.println("Account does not exist. Please register first.");
         } else {
             if (admin.getPassword() != passWord) {
-                System.out.println("Incorrect password.")
+                System.out.println("Incorrect password.");
             } else () {} // tham gia vào server
         }
     }
 
 }
 class Seller extends User {
+    User seller = new Seller();
+    public void register(String userName, String passWord) {
+        if (seller.getUserName() == null && seller.getPassword() == null) {
+            seller.setUserName(userName);
+            seller.setPassword(passWord);
+        } else if ( ) {// Nếu tên tài khoản đã sử dụng ở trong database
+            System.out.println("Please use other UserName.");
+        }
+    }
+    public void signIn(String userName, String passWord) {
+        if () { // có tài khoản trong database chưa
+            System.out.println("Account does not exist. Please register first.");
+        } else {
+            if (seller.getPassword() != passWord) {
+                System.out.println("Incorrect password.");
+            } else () {} // tham gia vào server
+        }
+    }
+    public void setStartingPrice(double StartingPrice) {
 
+    }
 
 }
