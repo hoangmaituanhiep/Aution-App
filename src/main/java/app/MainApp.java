@@ -1,8 +1,4 @@
 package app;
-<<<<<<< HEAD
-public class MainApp {
-    
-=======
 
 import java.io.IOException;
 
@@ -24,5 +20,4 @@ public class MainApp {
             System.exit(1);
         }
     }
->>>>>>> heip
 }
