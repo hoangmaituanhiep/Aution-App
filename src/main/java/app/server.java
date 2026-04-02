@@ -1,18 +1,28 @@
 package app;
-import java.io.*;
-import java.net.*;
-import java.util.concurrent.*;
+
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.util.Map;
+import java.util.concurrent.ExecutorService;
 
 public class server {
-    public static void main(String[] args) throws IOException {
-        ExecutorService executor = Executors.newFixedThreadPool(10);
-        ServerSocket server = new ServerSocket(5000);
+    private static Map<Integer, clientHandler> clientHandlers;
+    private static boolean isListening;
+    private static boolean isAutioning;
+    private static ExecutorService executors = new Executors.newFixedThreadPool(10);
+    private static ServerSocket serverSocket;
 
-        while (true) {
-            Socket client = server.accept();
-            System.out.println("New client: " + client.getInetAddress());
+    server() {
+        isAutioning=false;
+        isListening=false;
 
-            executor.execute(new clientHandler(client));
+        try {
+            serverSocket = new ServerSocket(5000);
         }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+
+        clientHandlers = new HashMap<Integer, clientHandler>();
     }
 }
