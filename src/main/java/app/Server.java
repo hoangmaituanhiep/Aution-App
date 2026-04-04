@@ -47,7 +47,7 @@ public class Server {
         while(isListening) {
             Socket clientSocket = serverSocket.accept();
             Client client = new Client(serverSocket);
-            ClientHandlers clientThread = new ClientHandler(clnt);
+            ClientHandlers clientThread = new ClientHandler(client);
         }
     }
 }

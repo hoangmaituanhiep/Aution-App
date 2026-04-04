@@ -22,8 +22,8 @@
          </effect></TextField>
       <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="360.0" promptText="Email" />
       <PasswordField fx:id="getPassword" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="360.0" promptText="Enter your password" />
-      <PasswordField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="360.0" promptText="Confirm password" />
-      <Button mnemonicParsing="false" stylesheets="@style.css" text="Sign up" />
+      <PasswordField fx:id="confirmPassword" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="360.0" promptText="Confirm password" />
+      <Button onAction="#handleSignUp" mnemonicParsing="false" stylesheets="@style.css" text="Sign up" />
    </children>
    <padding>
       <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
