@@ -34,7 +34,7 @@
     </dependencies>
 
     <build>
-        <sourceDirectory>java</sourceDirectory>
+        <sourceDirectory>src/main/java</sourceDirectory>
         <plugins>
             <plugin>
                 <groupId>org.openjfx</groupId>

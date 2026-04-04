@@ -21,7 +21,7 @@
    </Label>
 
     <Label text="Username: " />
-    <TextField fx:id="getUsetName" promptText="User name">
+    <TextField fx:id="getUserName" promptText="User name">
       <effect>
          <Reflection bottomOpacity="0.22" fraction="0.74" topOpacity="0.73" />
       </effect></TextField>

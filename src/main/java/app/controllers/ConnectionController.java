@@ -1,7 +1,15 @@
 package app.controllers;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.sceen.control.PasswordField;
+import javafx.scene.control.Button;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 import javax.script.ScriptEngineManager;
 
@@ -14,7 +22,7 @@ public class ConnectionController {
     @FXML private PasswordField confirmPassword;
     @FXML private Button signUpButton;
 
-    private ConnectionService service = new ConnectionService();
+    private final ConnectionService service = new ConnectionService();
 
     @FXML
     private void handleLogin() {
@@ -30,11 +38,16 @@ public class ConnectionController {
     private void handleSignUp() {
         if (service.authenticate(getUserName.getText(), getPassword.getText(), confirmPassword.getText())) {
             status.setText("Successfull!");
-
-            FXMLLoader loader = new FXMLLoader.getResource("/app/login.fxml");
-            Scene loginScene = new Scene(loader.load());
-            Stage stage = (Stage) signUpButton.getScene().getWindow();
-            stage.setScene(loginScene);
+            try {
+                FXMLLoader loader = new FXMLLoader.getResource("/app/login.fxml");
+                Scene loginScene = new Scene(loader.load());
+                Stage stage = (Stage) signUpButton.getScene().getWindow();
+                stage.setScene(loginScene);
+            }
+            catch (IOException e) {
+                status.setText("Cannot navigate to login scene. \nDon't try again.");
+                e.printStackTrace();
+            }
         }
         else {
             status.setText("Failed to register.");
