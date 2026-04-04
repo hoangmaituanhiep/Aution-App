@@ -25,4 +25,11 @@ public class server {
 
         clientHandlers = new HashMap<Integer, clientHandler>();
     }
+
+    public server getInstance() {
+        if (server == null) {
+            server = new server();
+        }
+        return server;
+    }
 }
