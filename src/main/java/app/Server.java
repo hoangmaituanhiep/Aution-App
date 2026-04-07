@@ -9,7 +9,7 @@ public class Server {
     private static Map<Integer, ClientHandler> clientHandlers;
     private static boolean isListening;
     private static boolean isAutioning;
-    private static ExecutorService executors = new Executors.newFixedThreadPool(10);
+    private static ExecutorService executors = Executors.newFixedThreadPool(10);//currently a dead instance
     private static ServerSocket serverSocket;
     private static Server server;
 
@@ -24,7 +24,7 @@ public class Server {
             e.printStackTrace();
         }
 
-        clientHandlers = new HashMap<Integer, clientHandler>();
+        clientHandlers = new HashMap<Integer,ClientHandler>();
     }
 
     public static Server getInstance() {
@@ -46,8 +46,7 @@ public class Server {
 
         while(isListening) {
             Socket clientSocket = serverSocket.accept();
-            Client client = new Client(serverSocket);
-            ClientHandlers clientThread = new ClientHandler(client);
+            executors.execute(new ClientHandler(clientSocket));
         }
     }
 }
