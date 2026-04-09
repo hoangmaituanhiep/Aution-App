@@ -4,6 +4,7 @@ public abstract class Item extends Entity {
     private String name;
     private double startingPrice;
     private double current_Price;
+    private double maxPrice;
     private String detail = "Seller is too lazy to write anything here.";
 
     Item(String name) { // Giá khởi điểm
@@ -33,6 +34,10 @@ public abstract class Item extends Entity {
     public double getCurrent_Price() {
         return current_Price;
     }
+
+    public double getMaxPrice() {return maxPrice;}
+
+    public void setMaxPrice(double Price) {this.maxPrice = Price;}
 
     public String getDetail() {
         return detail +
