@@ -1,45 +1,37 @@
 package app.functions;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Auction {
     private final String auctionId;
-    private Item item;
     private Seller seller;
-    private double startingPrice;
     private double step;
     private double currentHighestPrice;
     private Bidder currentWinner;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private String status;
-    private List<BidTransaction> bidHistory;
+    private Map<String, Item> auctionItem;
 
-    public Auction(String auctionId, Item item, Seller seller, double step,
+    public Auction(String auctionId, Seller seller, double step,
             LocalDateTime starTime, LocalDateTime endTime) {
         this.auctionId = auctionId;
-        this.item = item;
         this.seller = seller;
         this.step = step;
         this.startTime = starTime;
         this.endTime = endTime;
         this.currentWinner = null;
         this.status = "PENDING";
-        this.bidHistory = new ArrayList<>();
+        this.auctionItem = new HashMap<String, Item>();
+    }
+
+    public Item getItem(String id) {
+        return auctionItem.get(id);
     }
 
     public String getAuctionId() {
         return auctionId;
-    }
-
-    public Item getItem() {
-        return item;
-    }
-
-    public void setItem(Item item) {
-        this.item = item;
     }
 
     public Seller getSeller() {
@@ -50,14 +42,6 @@ public class Auction {
         this.seller = seller;
     }
 
-    public double getStartingPrice() {
-        return item.getStartingPrice();
-    }
-
-    public void setStartingPrice(double startingPrice) {
-        item.setStartingPrice(startingPrice);
-    }
-
     public double getStep() {
         return step;
     }
@@ -66,13 +50,13 @@ public class Auction {
         this.step = step;
     }
 
-    public double getCurrentHighestPrice() {
-        return item.getCurrent_Price();
+    public double getCurrentHighestPrice(String id) {
+        return getItem(id).getCurrent_Price();
     }
 
-    public void setCurrentHighestPrice(double newPrice) {
+    public void setCurrentHighestPrice(String id, double newPrice) {
         if (newPrice > currentHighestPrice) {
-            item.setNewPrice(newPrice);
+            getItem(id).setNewPrice(newPrice);
         }
     }
 
@@ -106,6 +90,10 @@ public class Auction {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public void add(String id, Item item) {
+        auctionItem.put(id, item);
     }
 
 }
