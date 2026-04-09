@@ -96,4 +96,5 @@ public class Auction {
         auctionItem.put(id, item);
     }
 
+    public
 }

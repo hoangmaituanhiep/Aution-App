@@ -1,5 +1,8 @@
 package app.functions;
 
+import java.util.HashMap;
+import java.util.Map;
+
 abstract class User extends Entity {
     protected String userName;
     protected String password;
@@ -25,9 +28,23 @@ class Bidder extends User {
 class Admin extends User {
 
 }
-class Seller extends User {
-    public void setStartingPrice(double StartingPrice) {
-
+class Seller<T extends Item> extends User {
+    Map<String, Item> list_item = new HashMap<>();
+    public void setStartingPrice(String id,double StartingPrice) {
+        list_item.get(id).setStartingPrice(StartingPrice);
     }
 
+    public void setMaxPrice(String id, double MaxPrice) {
+        list_item.get(id).setMaxPrice(MaxPrice);
+    }
+
+    public void addSellingItem(String id, Item item) {
+        list_item.put(id, item);
+    }
+
+    public void deleteSellingItem(String id) {
+        if (list_item.containsKey(id)) {
+            list_item.remove(id);
+        }
+    }
 }
