@@ -11,6 +11,7 @@ public class Auction {
     private String status;
     private Map<String, Item> auctionItem;
     private Map<String, User> onlineUser;
+    private Admin admin;
 
     public Auction(String auctionId, Seller seller, double step,
             LocalDateTime starTime, LocalDateTime endTime) {
@@ -23,12 +24,32 @@ public class Auction {
         this.onlineUser = new HashMap<>();
     }
 
+    public Admin getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Admin admin) {
+        this.admin = admin;
+        onlineUser.put(admin.toString(), admin);
+    }
+
     public void setAuctionItem(Map<String, Item> auctionItem) {
         this.auctionItem = auctionItem;
     }
 
     public Map<String, User> getOnlineUser() {
         return onlineUser;
+    }
+
+    public void addOnlineUser(User user) {
+        onlineUser.put(user.toString(), user);
+    }
+
+    public User getUser(String username) {
+        if (onlineUser.containsKey(username)) {
+            return onlineUser.get(username);
+        }
+        return null;
     }
 
     public Item getItem(String id) {
