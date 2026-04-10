@@ -21,6 +21,10 @@ class Bidder extends User {
             System.out.println("Done!!!");
         } else { System.out.println("Absolutely failure.");}
     }
+
+    public String toString(){
+        return "#bidder:" + getUserName();
+    }
 }
 class Admin extends User {
     private Map<String, User> listUser;
@@ -45,6 +49,10 @@ class Admin extends User {
     public User findUser(String userName) {
         return listUser.get(userName);
     }
+
+    public String toString() {
+        return "#admin:" + getUserName();
+    }
 }
 class Seller extends User {
     Map<String, Item> list_item = new HashMap<>();
@@ -64,5 +72,8 @@ class Seller extends User {
         if (list_item.containsKey(id)) {
             list_item.remove(id);
         }
+    }
+    public String toString() {
+        return "#seller:"+getUserName();
     }
 }
