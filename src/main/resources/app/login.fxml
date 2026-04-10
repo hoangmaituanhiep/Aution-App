@@ -33,7 +33,7 @@
       </effect></PasswordField>
 
     <Button fx:id="signInButton" onAction="#handleLogin" stylesheets="@style.css" text="Login" />
-   <TextField alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="334.0" promptText="Forgot your login details?" />
+   <TextField fx:id="forgotPassword" alignment="CENTER" disable="true" prefHeight="26.0" prefWidth="334.0" promptText="Forgot your login details?" />
     <Label fx:id="status" />
 
 </VBox>

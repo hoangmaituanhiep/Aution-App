@@ -22,6 +22,7 @@
       <Label />
       <PasswordField fx:id="confirmPassword" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="360.0" promptText="Confirm password" />
       <Label />
-      <Button mnemonicParsing="false" onAction="#handleSignUp" text="Sign up" />
+      <Button fx:id="signUpButton" mnemonicParsing="false" onAction="#handleSignUp" text="Sign up" />
+      <Label fx:id = "status" />
    </children>
 </VBox>
