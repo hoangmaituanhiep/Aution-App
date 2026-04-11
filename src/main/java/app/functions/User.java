@@ -75,6 +75,12 @@ class Seller extends User {
             list_item.remove(id);
         }
     }
+
+    public void sellAll() {
+        auction.add(list_item);
+        list_item.clear();
+    }
+
     public String toString() {
         return "#seller:"+getUserName();
     }

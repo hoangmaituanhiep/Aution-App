@@ -24,6 +24,73 @@ public class Auction {
         this.onlineUser = new HashMap<>();
     }
 
+    // Auction ID
+    public String getAuctionId() {
+        return auctionId;
+    }
+
+    // Step
+    public double getStep() {
+        return step;
+    }
+
+    public void setStep(double step) {
+        this.step = step;
+    }
+
+    //Start Time
+    public LocalDateTime getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(LocalDateTime startTime) {
+        this.startTime = startTime;
+    }
+
+    //End Time
+    public LocalDateTime getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(LocalDateTime endTime) {
+        this.endTime = endTime;
+    }
+
+    //Status
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    //Auction Item
+    public Item getItem(String id) {
+        return auctionItem.get(id);
+    }
+
+    public double getCurrentHighestPrice(String id) {
+        return getItem(id).getCurrent_Price();
+    }
+
+    public boolean setCurrentHighestPrice(String id, double price) {
+        if (getItem(id).getCurrent_Price() < price) {
+            getItem(id).setNewPrice(price);
+            return true;
+        }
+        return false;
+    }
+
+    public void add(Map<String, Item> list_item) {
+        auctionItem.putAll(list_item);
+    }
+
+    public Map<String, Item> getAuctionItem() {
+        return auctionItem;
+    }
+
+    //Online User
     public Admin getAdmin() {
         return admin;
     }
@@ -31,10 +98,6 @@ public class Auction {
     public void setAdmin(Admin admin) {
         this.admin = admin;
         onlineUser.put(admin.toString(), admin);
-    }
-
-    public void setAuctionItem(Map<String, Item> auctionItem) {
-        this.auctionItem = auctionItem;
     }
 
     public Map<String, User> getOnlineUser() {
@@ -50,57 +113,5 @@ public class Auction {
             return onlineUser.get(username);
         }
         return null;
-    }
-
-    public Item getItem(String id) {
-        return auctionItem.get(id);
-    }
-
-    public String getAuctionId() {
-        return auctionId;
-    }
-
-    public double getStep() {
-        return step;
-    }
-
-    public void setStep(double step) {
-        this.step = step;
-    }
-
-    public double getCurrentHighestPrice(String id) {
-        return getItem(id).getCurrent_Price();
-    }
-
-    public LocalDateTime getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(LocalDateTime startTime) {
-        this.startTime = startTime;
-    }
-
-    public LocalDateTime getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(LocalDateTime endTime) {
-        this.endTime = endTime;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public void add(String id, Item item) {
-        auctionItem.put(id, item);
-    }
-
-    public Map<String, Item> getAuctionItem() {
-        return auctionItem;
     }
 }
