@@ -21,7 +21,7 @@ public class Server {
         isListening=false;
 
         try {
-            serverSocket = new ServerSocket(5000);
+            serverSocket = new ServerSocket(0);
         }
         catch (IOException e){
             e.printStackTrace();
