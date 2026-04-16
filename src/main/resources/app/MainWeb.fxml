@@ -12,37 +12,37 @@
    <top>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="85.0" fitWidth="124.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="142.0" fitWidth="158.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/Auction.png" />
                </image>
                <HBox.margin>
-                  <Insets left="15.0" right="15.0" top="10.0" />
+                  <Insets left="15.0" right="50.0" top="10.0" />
                </HBox.margin>
             </ImageView>
-            <TextField fx:id="searchItems" alignment="CENTER" prefHeight="31.0" prefWidth="245.0" promptText="Search items...">
+            <TextField fx:id="searchItems" alignment="CENTER" prefHeight="42.0" prefWidth="666.0" promptText="Search items...">
                <HBox.margin>
                   <Insets top="30.0" />
                </HBox.margin>
             </TextField>
-            <Button disable="true" minWidth="50.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="54.0" style="-fx-background-color: #FFFFFF;">
+            <Button disable="true" minWidth="50.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="62.0" style="-fx-background-color: #FFFFFF;">
                <graphic>
-                  <ImageView fitHeight="47.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="41.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/search-icon-png-5.png" />
                      </image>
                   </ImageView>
                </graphic>
                <HBox.margin>
-                  <Insets top="30.0" />
+                  <Insets top="36.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="logIn" mnemonicParsing="false" prefHeight="31.0" prefWidth="62.0" style="-fx-background-color: #00000000; -fx-text-fill: #000000;" text="LOG IN">
+            <Button fx:id="logIn" mnemonicParsing="false" prefHeight="42.0" prefWidth="69.0" style="-fx-background-color: #00000000; -fx-text-fill: #000000;" text="LOG IN">
                <HBox.margin>
-                  <Insets left="15.0" top="30.0" />
+                  <Insets left="30.0" top="30.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="join" mnemonicParsing="false" prefHeight="31.0" prefWidth="62.0" text="JOIN">
+            <Button fx:id="join" mnemonicParsing="false" prefHeight="42.0" prefWidth="68.0" text="JOIN">
                <HBox.margin>
                   <Insets left="20.0" top="30.0" />
                </HBox.margin>
