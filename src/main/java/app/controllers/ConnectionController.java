@@ -25,7 +25,7 @@ public class ConnectionController {
     private final ConnectionService service = new ConnectionService();
 
     @FXML
-    private void handleLogin() {
+    public void handleLogin() {
         if(service.authenticate(getUserName.getText(), getPassword.getText())) {
             status.setText("Successfull!");
         }
@@ -35,7 +35,7 @@ public class ConnectionController {
     }
 
     @FXML
-    private void handleSignUp() {
+    public void handleSignUp() {
         if (service.authenticate(getUserName.getText(), getPassword.getText(), confirmPassword.getText())) {
             status.setText("Successfull!");
             try {
