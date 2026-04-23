@@ -44,13 +44,13 @@
     <Button fx:id="signInButton" onAction="#handleLogin" stylesheets="@style.css" text="Login" />
    <HBox alignment="CENTER" prefHeight="28.0" prefWidth="470.0">
       <children>
-         <TextField fx:id="forgotPassword" alignment="CENTER" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="160.0" promptText="Forgot your login details?" style="-fx-border-width: 0 0 0 0;" />
+         <Label disable="true" text="Forgot your login details?" />
          <Hyperlink text="Forgot Password" />
       </children>
    </HBox>
    <HBox alignment="CENTER" prefHeight="32.0" prefWidth="470.0">
       <children>
-         <TextField alignment="CENTER" promptText="Don't have an account?" style="-fx-border-width: 1 0 0 0;" />
+         <Label disable="true" text="Don't have an account?" />
          <Hyperlink fx:id="signUpLink" onAction="#callSignUp" text="Sign up" />
       </children>
    </HBox>
