@@ -34,14 +34,15 @@ public class ConnectionController {
 
     @FXML
     public void handleLogin() {
+        //Why put the authenticate outside the if statement, so it can correctly process the authentication without being interrupt
         boolean isSuccess = service.authenticate(getUserName.getText(), getPassword.getText());
 
         if (isSuccess) {
 
             if (listener != null) {
-                User.getInstance().setUserName(getUserName.getText());
+                User.getInstance().setUserName(getUserName.getText()); //Set the username for user
 
-                listener.loginSucceeded(getUserName.getText());
+                listener.loginSucceeded(getUserName.getText());//This has been define by a lambda expression on MainWebController, now just call it
 
                 Stage thisStage = (Stage) signInButton.getScene().getWindow();
                 thisStage.close();

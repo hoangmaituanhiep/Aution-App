@@ -9,6 +9,7 @@ public abstract class User extends Entity {
     protected Auction auction;
 
     public static User getInstance() {
+        //Just need one user object for each guys access the app
         if (instance == null) {
             instance = new User() {};
         }

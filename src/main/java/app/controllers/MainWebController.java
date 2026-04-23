@@ -22,6 +22,7 @@ public class MainWebController {
 
             ConnectionController connectionController = loginLoader.getController();
             connectionController.setLoginListener(username -> {
+                //this is for loginSucceeded function
                 logIn.setVisible(false);
                 logInLabel.setText("Wellcome " + username + " !");
                 logInLabel.setVisible(true);
