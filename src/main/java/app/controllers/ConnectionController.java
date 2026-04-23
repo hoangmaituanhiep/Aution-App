@@ -12,9 +12,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-import javax.script.ScriptEngineManager;
+import app.functions.User;
 
-import javafx.event.ActionEvent;
 
 public class ConnectionController {
     @FXML private TextField getUserName;
@@ -25,26 +24,28 @@ public class ConnectionController {
     @FXML private Hyperlink signUpLink;
     @FXML private Button signInButton;
 
-
     private final ConnectionService service = new ConnectionService();
+
+    interface loginListener{
+        void loginSucceeded(String username);
+    }
+    private loginListener listener;
+    public void setLoginListener(loginListener listener) {this.listener=listener;}
 
     @FXML
     public void handleLogin() {
-        if(service.authenticate(getUserName.getText(), getPassword.getText())) {
-            status.setText("Successfull!");
-            try {
-                FXMLLoader mainAppLoader = new FXMLLoader(getClass().getResource("/app/MainWeb.fxml"));
-                Scene mainScene = new Scene(mainAppLoader.load());
-                Stage mainStage = (Stage) signInButton.getScene().getWindow();
-                mainStage.setScene(mainScene);
+        boolean isSuccess = service.authenticate(getUserName.getText(), getPassword.getText());
+
+        if (isSuccess) {
+
+            if (listener != null) {
+                User.getInstance().setUserName(getUserName.getText());
+
+                listener.loginSucceeded(getUserName.getText());
+
+                Stage thisStage = (Stage) signInButton.getScene().getWindow();
+                thisStage.close();
             }
-            catch (IOException e) {
-                status.setText("Cannot navigate to the Main page. Come again next time!");
-                e.printStackTrace();
-            }
-        }
-        else {
-            status.setText("Failed to login.");
         }
     }
 

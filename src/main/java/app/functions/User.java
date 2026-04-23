@@ -3,9 +3,17 @@ package app.functions;
 import java.util.HashMap;
 import java.util.Map;
 
-abstract class User extends Entity {
+public abstract class User extends Entity {
+    private static User instance;
     protected String userName;
     protected Auction auction;
+
+    public static User getInstance() {
+        if (instance == null) {
+            instance = new User() {};
+        }
+        return instance;
+    }
 
     public String getUserName() {return userName;}
     public void setUserName(String userName) {this.userName = userName;}

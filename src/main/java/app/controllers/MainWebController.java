@@ -12,16 +12,24 @@ public class MainWebController {
     @FXML private TextField searchItems;
     @FXML private Button logIn;
     @FXML private Button join;
+    @FXML private Label logInLabel;
     
     @FXML
     public void callLogIn() {
         try {
             FXMLLoader loginLoader = new FXMLLoader(getClass().getResource("/app/login.fxml"));
             Scene loginScene = new Scene(loginLoader.load());
+
+            ConnectionController connectionController = loginLoader.getController();
+            connectionController.setLoginListener(username -> {
+                logIn.setVisible(false);
+                logInLabel.setText("Wellcome " + username + " !");
+                logInLabel.setVisible(true);
+            });
+
             Stage loginStage = new Stage();
             loginStage.setScene(loginScene);
             loginStage.show();
-            logIn.setManaged(false);
         }
         catch (IOException e) {
             e.printStackTrace();
