@@ -18,8 +18,9 @@ public class MainWebController {
         try {
             FXMLLoader loginLoader = new FXMLLoader(getClass().getResource("/app/login.fxml"));
             Scene loginScene = new Scene(loginLoader.load());
-            Stage loginStage = (Stage) logIn.getScene().getWindow();
+            Stage loginStage = new Stage();
             loginStage.setScene(loginScene);
+            loginStage.show();
         }
         catch (IOException e) {
             e.printStackTrace();
