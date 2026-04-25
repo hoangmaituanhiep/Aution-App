@@ -27,8 +27,8 @@ public class ConnectionController {
 
     private final ConnectionService service = new ConnectionService();
 
-    private loginListener listener;
-    public void setLoginListener(loginListener listener) {this.listener=listener;}
+    private LoginDAO listener;
+    public void setLoginListener(LoginDAO listener) {this.listener=listener;}
 
     @FXML
     public void handleLogin() {

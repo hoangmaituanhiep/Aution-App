@@ -1,5 +1,5 @@
 package app.dao;
 
-public interface loginListener {
+public interface LoginDAO {
     void loginSucceeded(String username);
 }

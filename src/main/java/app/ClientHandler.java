@@ -44,6 +44,20 @@ public class ClientHandler implements Runnable {
 
     @Override
     public void run() {
-        
+        isRunning = true;
+        Server server = Server.getInstance();
+
+        try {
+            objectInputStream = new ObjectInputStream(client.getSocket().getInputStream());
+            objectOutputStream = new ObjectOutputStream(client.getSocket().getOutputStream());
+        }
+        catch (IOException e) {
+            isRunning = false;
+            e.printStackTrace();
+        }
+
+        while (isRunning) {
+            
+        }
     }
 }
