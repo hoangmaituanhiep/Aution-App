@@ -1,22 +1,29 @@
 package app.functions;
 
+import java.time.*;
+
+import javafx.scene.image.Image;
+
 public abstract class Item extends Entity {
     private String name;
     private double startingPrice;
     private double current_Price;
     private double maxPrice;
     private String detail = "Seller is too lazy to write anything here.";
+    private LocalDateTime endTime;
+    private Image image;
 
-    Item(String name) { // Giá khởi điểm
+    public Item(String name) {
         this.name = name;
     }
 
     public void setStartingPrice(double price) {
-        this.startingPrice = startingPrice;
+        this.startingPrice = price;
+        this.current_Price = price;
     }
 
-    public void setNewPrice(double NewPrice) { // Giá hiện tại
-        this.current_Price = current_Price;
+    public void setNewPrice(double NewPrice) {
+        this.current_Price = NewPrice;
     }
 
     public void writeDetail(String detail) {
@@ -35,14 +42,34 @@ public abstract class Item extends Entity {
         return current_Price;
     }
 
-    public double getMaxPrice() {return maxPrice;}
+    public double getMaxPrice() {
+        return maxPrice;
+    }
 
-    public void setMaxPrice(double Price) {this.maxPrice = Price;}
+    public void setMaxPrice(double Price) {
+        this.maxPrice = Price;
+    }
 
     public String getDetail() {
         return detail +
                 "\nStrating price: " + startingPrice +
                 "\nCurrent highest price: " + current_Price;
+    }
+
+    public LocalDateTime getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(LocalDateTime endTime) {
+        this.endTime = endTime;
+    }
+
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
     }
 
     public abstract String toString();
@@ -60,6 +87,7 @@ class Electronics extends Item {
         return company;
     }
 
+    @Override
     public String toString() {
         return "Name: " + super.getName() +
                 "\nCompany: " + company +
@@ -72,7 +100,7 @@ class Art extends Item {
     private String artist_name;
 
     public Art(String name, String artist_name) {
-        super(artist_name);
+        super(name);
         this.artist_name = artist_name;
     }
 
