@@ -3,22 +3,33 @@ package app.functions;
 import java.util.HashMap;
 import java.util.Map;
 
+import app.controllers.MainWebController;
+
 public abstract class User extends Entity {
     private static User instance;
     protected String userName;
     protected Auction auction;
 
     public static User getInstance() {
-        //Just need one user object for each guys access the app
+        // Just need one user object for each guys access the app
         if (instance == null) {
-            instance = new User() {};
+            instance = new User() {
+            };
         }
         return instance;
     }
 
-    public String getUserName() {return userName;}
-    public void setUserName(String userName) {this.userName = userName;}
-    public void participate(Auction auction) {this.auction = auction;}
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public void participate(Auction auction) {
+        this.auction = auction;
+    }
 }
 
 class Bidder extends User {
@@ -26,17 +37,21 @@ class Bidder extends User {
     public <T extends Item> String getItem_Info(T item) {
         return item.toString();
     }
+
     public <T extends Item> void Autioned(T item, double newPrice) {
         if (newPrice > item.getCurrent_Price()) {
             item.setNewPrice(newPrice);
             System.out.println("Done!!!");
-        } else { System.out.println("Absolutely failure.");}
+        } else {
+            System.out.println("Absolutely failure.");
+        }
     }
 
-    public String toString(){
+    public String toString() {
         return "#bidder:" + getUserName();
     }
 }
+
 class Admin extends User {
     private Map<String, User> listUser;
 
@@ -44,19 +59,24 @@ class Admin extends User {
         this.userName = userName;
         listUser = new HashMap<>();
     }
+
     Admin(String username, Map<String, User> listUser) {
-        this.userName=username;
+        this.userName = username;
         if (listUser.isEmpty()) {
             this.listUser = new HashMap<>();
-        }
-        else {
+        } else {
             this.listUser = listUser;
         }
     }
 
-    public Map<String, User> getListUser(){
+    public void addUser(User user) {
+        listUser.put(user.getUserName(), user);
+    }
+
+    public Map<String, User> getListUser() {
         return listUser;
     }
+
     public User findUser(String userName) {
         return listUser.get(userName);
     }
@@ -65,18 +85,25 @@ class Admin extends User {
         return "#admin:" + getUserName();
     }
 }
+
 class Seller extends User {
     Map<String, Item> list_item = new HashMap<>();
-    public void setStartingPrice(String id,double StartingPrice) {
-        list_item.get(id).setStartingPrice(StartingPrice);
+
+    public void setStartingPrice(String id, double startingPrice) {
+        if (list_item.containsKey(id)) {
+            list_item.get(id).setStartingPrice(startingPrice);
+        }
     }
 
-    public void setMaxPrice(String id, double MaxPrice) {
-        list_item.get(id).setMaxPrice(MaxPrice);
+    public void setMaxPrice(String id, double maxPrice) {
+        if (list_item.containsKey(id)) {
+            list_item.get(id).setMaxPrice(maxPrice);
+        }
     }
 
     public void addSellingItem(String id, Item item) {
         list_item.put(id, item);
+        MainWebController.getInstance().addAuctionItem(item);
     }
 
     public void deleteSellingItem(String id) {
@@ -86,11 +113,13 @@ class Seller extends User {
     }
 
     public void sellAll() {
-        auction.add(list_item);
-        list_item.clear();
+        if (auction != null) {
+            auction.add(list_item);
+            list_item.clear();
+        }
     }
 
     public String toString() {
-        return "#seller:"+getUserName();
+        return "#seller:" + getUserName();
     }
 }

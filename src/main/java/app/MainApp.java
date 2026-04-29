@@ -41,7 +41,7 @@ public class MainApp extends Application {
         Scene scene = new Scene(root, 1280, 720); // preheight and prewidth in MainWeb pages
 
         primaryStage.setScene(scene);
-        primaryStage.setTitle("Aution App");
+        primaryStage.setTitle("Auction App");
         primaryStage.show();
     }
 
