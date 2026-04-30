@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="645.0" prefWidth="600.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label alignment="CENTER" prefHeight="155.0" prefWidth="600.0" text="Electronic Item">
+         <font>
+            <Font size="47.0" />
+         </font>
+      </Label>
+      <HBox prefHeight="40.0" prefWidth="600.0">
+         <children>
+            <Label alignment="CENTER" prefHeight="40.0" prefWidth="84.0" text="Item Name:">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="50.0" right="15.0" />
+               </HBox.margin></Label>
+            <TextField prefHeight="40.0" prefWidth="386.0" promptText="Enter name..." style="-fx-border-width: 0 0 1 0; -fx-border-color: #cccccc;">
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+         </children>
+         <VBox.margin>
+            <Insets top="15.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox prefHeight="58.0" prefWidth="600.0">
+         <children>
+            <Label alignment="CENTER" prefHeight="58.0" prefWidth="150.0" text="Company:" />
+            <TextField prefHeight="50.0" prefWidth="382.0" promptText="Enter company..." />
+         </children>
+      </HBox>
+      <HBox prefHeight="57.0" prefWidth="600.0">
+         <children>
+            <Label alignment="CENTER" prefHeight="54.0" prefWidth="152.0" text="Details:" />
+            <TextField prefHeight="50.0" prefWidth="378.0" promptText="Write details..." />
+         </children>
+      </HBox>
+      <HBox prefHeight="66.0" prefWidth="600.0">
+         <children>
+            <Label alignment="CENTER" prefHeight="65.0" prefWidth="145.0" text="Starting Price:" />
+            <TextField prefHeight="64.0" prefWidth="390.0" promptText="Enter Starting Price..." />
+         </children>
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Label alignment="CENTER" prefHeight="60.0" prefWidth="149.0" text="End Time:" />
+            <TextField prefHeight="56.0" prefWidth="390.0" promptText="Enter End Time..." />
+         </children>
+      </HBox>
+   </children>
+</VBox>
