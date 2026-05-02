@@ -50,14 +50,22 @@ public class ClientHandler implements Runnable {
         try {
             objectInputStream = new ObjectInputStream(client.getSocket().getInputStream());
             objectOutputStream = new ObjectOutputStream(client.getSocket().getOutputStream());
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             isRunning = false;
             e.printStackTrace();
         }
 
         while (isRunning) {
-            
+
         }
+    }
+
+    public void stopRunning() throws IOException {
+        isRunning = false;
+
+        client.getSocket().close();
+
+        Server server = Server.getInstance();
+        server.getClientHanlders().remove(getClient().getSocket().getInetAddress().getHostAddress());
     }
 }

@@ -3,6 +3,8 @@ package app.functions;
 import java.time.LocalDateTime;
 import java.util.*;
 
+import app.Client;
+
 public class Auction {
     private final String auctionId;
     private double step;
@@ -11,6 +13,7 @@ public class Auction {
     private String status;
     private Map<String, Item> auctionItem;
     private Map<String, User> onlineUser;
+    private List<Client> clients;
     private Admin admin;
 
     public Auction(String auctionId, Seller seller, double step,
@@ -22,6 +25,7 @@ public class Auction {
         this.status = "PENDING";
         this.auctionItem = new HashMap<String, Item>();
         this.onlineUser = new HashMap<>();
+        clients = new ArrayList<Client>();
     }
 
     // Auction ID
@@ -113,5 +117,11 @@ public class Auction {
             return onlineUser.get(username);
         }
         return null;
+    }
+    public List<Client> getClients() {
+        return clients;
+    }
+    public void addClient(Client client) {
+        clients.add(client);
     }
 }
