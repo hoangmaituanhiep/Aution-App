@@ -103,7 +103,6 @@ class Seller extends User {
 
     public void addSellingItem(String id, Item item) {
         list_item.put(id, item);
-        MainWebController.getInstance().addAuctionItem(item);
     }
 
     public void deleteSellingItem(String id) {

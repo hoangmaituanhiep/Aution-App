@@ -74,7 +74,7 @@ public class Server {
             Client client = new Client(clientSocket);
             ClientHandler clientThread = new ClientHandler(client);
             clientHandlers.put(client.getSocket().getInetAddress().getHostAddress(), clientThread);
-            executors.execute(new ClientHandler(client));
+            executors.execute(clientThread);
         }
     }
 

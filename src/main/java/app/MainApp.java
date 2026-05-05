@@ -12,48 +12,47 @@ import javafx.stage.Stage;
 
 import javax.swing.text.html.ImageView;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class MainApp extends Application {
-    private static int port = 0;// default port
+  private static final Logger logger = LoggerFactory.getLogger(MainApp.class);
 
-    @Override
-    public void start(Stage primaryStage) throws IOException {
+  private static int port = 8080;// default port
 
-        Thread serverThread = new Thread(() -> {
-            Server server = Server.getInstance(port);
-            try {
-                server.listen();
-            } catch (IOException e) {
-                System.err.println("Failed to start server: " + e.getMessage());
-            }
-        });
-        // Must mark a thread daemon before start, only daemon threads run when VTM
-        // start
-        serverThread.setDaemon(true);// VTM exists when all threads running are deamon threads
-        serverThread.start();
+  public static int getPort() {
+    return port;
+  }
 
-        // Initial the database
-        DatabaseController.initialize();
+  private NetworkClient networkClient;
 
-        // Get the FXML file to load on screen
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/MainWeb.fxml"));
-        Parent root = loader.load();// Load the scene into ram
+  @Override
+  public void start(Stage primaryStage) throws IOException {
+    networkClient = NetworkClient.getInstance();
 
-        Scene scene = new Scene(root, 1280, 720); // preheight and prewidth in MainWeb pages
+    // Initial the database
+    DatabaseController.initialize();
 
-        primaryStage.setScene(scene);
-        primaryStage.setTitle("Auction App");
-        primaryStage.show();
+    // Get the FXML file to load on screen
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/MainWeb.fxml"));
+    Parent root = loader.load();// Load the scene into ram
+
+    Scene scene = new Scene(root, 1280, 720); // preheight and prewidth in MainWeb pages
+
+    primaryStage.setScene(scene);
+    primaryStage.setTitle("Auction App");
+    primaryStage.show();
+  }
+
+  public static void main(String[] args) throws IOException {
+    // get port
+    if (args.length > 0) {
+      try {
+        port = Integer.parseInt(args[0]);
+      } catch (NumberFormatException e) {
+        System.err.println("Invalid port");
+      }
     }
-
-    public static void main(String[] args) throws IOException {
-        // get port
-        if (args.length > 0) {
-            try {
-                port = Integer.parseInt(args[0]);
-            } catch (NumberFormatException e) {
-                System.err.println("Invalid port");
-            }
-        }
-        Application.launch(args);// call start and pass port indirectly
-    }
+    Application.launch(args);// call start and pass port indirectly
+  }
 }
