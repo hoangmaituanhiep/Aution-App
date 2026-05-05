@@ -9,7 +9,7 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="645.0" prefWidth="600.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label alignment="CENTER" prefHeight="155.0" prefWidth="600.0" text="Electronic Item">
+      <Label alignment="CENTER" prefHeight="155.0" prefWidth="600.0" text="Item">
          <font>
             <Font size="47.0" />
          </font>
@@ -59,8 +59,8 @@
       </HBox>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Label alignment="CENTER" prefHeight="60.0" prefWidth="149.0" text="End Time:" />
-            <TextField prefHeight="56.0" prefWidth="390.0" promptText="Enter End Time..." />
+            <Label alignment="CENTER" prefHeight="60.0" prefWidth="149.0" text="Duration" />
+            <TextField prefHeight="56.0" prefWidth="390.0" promptText="Enter time (in minutes)" />
          </children>
       </HBox>
    </children>
