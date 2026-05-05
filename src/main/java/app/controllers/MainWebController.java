@@ -55,15 +55,6 @@ public class MainWebController {
     try {
       FXMLLoader loginLoader = new FXMLLoader(getClass().getResource("/app/login.fxml"));
       Scene loginScene = new Scene(loginLoader.load());
-
-      ConnectionController connectionController = loginLoader.getController();
-      connectionController.setLoginListener(username -> {
-        // this is for loginSucceeded function
-        logIn.setVisible(false);
-        logInLabel.setText("Wellcome " + username + " !");
-        logInLabel.setVisible(true);
-      });
-
       Stage loginStage = new Stage();
       loginStage.setScene(loginScene);
       loginStage.show();

@@ -12,72 +12,83 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-import app.functions.User;
-import app.dao.*;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
+import app.functions.User;
 
 public class ConnectionController {
-    @FXML private TextField getUserName;
-    @FXML private PasswordField getPassword;
-    @FXML private Label status;
-    @FXML private PasswordField confirmPassword;
-    @FXML private Button signUpButton;
-    @FXML private Hyperlink signUpLink;
-    @FXML private Button signInButton;
+  @FXML
+  private TextField getUserName;
+  @FXML
+  private PasswordField getPassword;
+  @FXML
+  private Label status;
+  @FXML
+  private PasswordField confirmPassword;
+  @FXML
+  private Button signUpButton;
+  @FXML
+  private Hyperlink signUpLink;
+  @FXML
+  private Button signInButton;
 
-    private final ConnectionService service = new ConnectionService();
+  private static final Logger logger = LoggerFactory.getLogger(ConnectionController.class);
 
-    private LoginDAO listener;
-    public void setLoginListener(LoginDAO listener) {this.listener=listener;}
+  private final ConnectionService service = new ConnectionService();
 
-    @FXML
-    public void handleLogin() {
-        //Why put the authenticate outside the if statement, so it can correctly process the authentication without being interrupt
-        boolean isSuccess = service.authenticate(getUserName.getText(), getPassword.getText());
+  @FXML
+  public void handleLogin() {
+    logger.debug("DEBUG: Signing in...");
+    // Why put the authenticate outside the if statement, so it can correctly
+    // process the authentication without being interrupt
+    boolean isSuccess = service.authenticate(getUserName.getText(), getPassword.getText());
 
-        if (isSuccess) {
-
-            if (listener != null) {
-                User.getInstance().setUserName(getUserName.getText()); //Set the username for user
-
-                listener.loginSucceeded(getUserName.getText());//This has been define by a lambda expression on MainWebController, now just call it
-
-                Stage thisStage = (Stage) signInButton.getScene().getWindow();
-                thisStage.close();
-            }
-        }
+    if (isSuccess) {
+      logger.info("INFO: Login succeeded. Closing window ...");
+      Stage thisStage = (Stage) signInButton.getScene().getWindow();
+      thisStage.close();
+    } else {
+      logger.error("ERROR: Authentication failed!");
     }
+  }
 
-    @FXML
-    public void handleSignUp() {
-        if (service.authenticate(getUserName.getText(), getPassword.getText(), confirmPassword.getText())) {
-            status.setText("Successfull!");
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/login.fxml"));
-                Scene loginScene = new Scene(loader.load());
-                Stage stage = (Stage) signUpButton.getScene().getWindow();
-                stage.setScene(loginScene);
-            }
-            catch (IOException e) {
-                status.setText("Cannot navigate to login scene. \nDon't try again.");
-                e.printStackTrace();
-            }
-        }
-        else {
-            status.setText("Failed to register.");
-        }
+  @FXML
+  public void handleSignUp() {
+    logger.debug("DEBUG: Signing up...");
+
+    if (service.authenticate(getUserName.getText(), getPassword.getText(), confirmPassword.getText())) {
+      
+      logger.info("INFO: Signup succeeded. Navigating to login...");
+
+      try {
+        logger.debug("DEBUG: Switching to login...");
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/login.fxml"));
+        Scene loginScene = new Scene(loader.load());
+        Stage stage = (Stage) signUpButton.getScene().getWindow();
+        stage.setScene(loginScene);
+      } catch (IOException e) {
+        status.setText("Cannot navigate to login scene. \nDon't try again.");
+        logger.error("ERROR: " + e.getMessage());
+      }
+    } else {
+      status.setText("Failed to register.");
+      logger.error("ERROR: Authentication failed.");
     }
-    @FXML
-    public void callSignUp() {
-        try {
-            FXMLLoader signUpLoader = new FXMLLoader(getClass().getResource("/app/signup.fxml"));
-            Scene signUpScene = new Scene(signUpLoader.load());
-            Stage signUpStage = (Stage) signUpLink.getScene().getWindow();
-            signUpStage.setScene(signUpScene);
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
+  }
+
+  @FXML
+  public void callSignUp() {
+    try {
+      logger.debug("DEBUG: Opening signup Scene...");
+
+      FXMLLoader signUpLoader = new FXMLLoader(getClass().getResource("/app/signup.fxml"));
+      Scene signUpScene = new Scene(signUpLoader.load());
+      Stage signUpStage = (Stage) signUpLink.getScene().getWindow();
+      signUpStage.setScene(signUpScene);
+    } catch (IOException e) {
+      logger.error("ERROR: " + e.getMessage());
     }
+  }
 }
-
