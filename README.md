@@ -2,5 +2,5 @@
 A big project.
 
 To run project using terminal: 
-- On MacOS/Linux: ./mvnw javafx:run
-- On Windows: mvnw.cmd javafx:run
+- Run Server: mvn clean compile exec:java -Dexec.mainClass="app.ServerMain"
+- Run Client GUI: mvn javafx:run
