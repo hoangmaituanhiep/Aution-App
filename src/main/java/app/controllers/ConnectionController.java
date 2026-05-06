@@ -15,7 +15,8 @@ import java.io.IOException;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 
-import app.functions.User;
+import app.dao.UserDAO;
+import app.services.ConnectionService;
 
 public class ConnectionController {
   @FXML
@@ -35,7 +36,14 @@ public class ConnectionController {
 
   private static final Logger logger = LoggerFactory.getLogger(ConnectionController.class);
 
-  private final ConnectionService service = new ConnectionService();
+  private ConnectionService service;
+  
+  public ConnectionController() {
+    UserDAO userDAO = new UserDAO();
+    this.service = new ConnectionService(userDAO);
+
+    service.setupDatabase();
+  }
 
   @FXML
   public void handleLogin() {

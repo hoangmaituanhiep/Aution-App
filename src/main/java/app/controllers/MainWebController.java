@@ -6,8 +6,10 @@ import org.slf4j.LoggerFactory;
 
 import app.MainApp;
 import app.NetworkClient;
+import app.dao.ItemDAO;
 import app.packets.Message;
 import app.packets.PacketMessage;
+import app.services.ItemsService;
 
 import org.slf4j.Logger;
 
@@ -23,6 +25,7 @@ public class MainWebController {
   private static final Logger logger = LoggerFactory.getLogger(MainWebController.class);
 
   private NetworkClient networkClient;
+  private ItemsService itemsService;
 
   @FXML
   private BorderPane mainPane;
@@ -40,6 +43,13 @@ public class MainWebController {
   private Label logInLabel;
   @FXML
   private TilePane auctionPane;
+
+  public MainWebController() {
+    ItemDAO itemDAO = new ItemDAO();
+    this.itemsService = new ItemsService(itemDAO);
+
+    this.itemsService.setupDatabase();
+  }
 
   private static MainWebController instance;
 
